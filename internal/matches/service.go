@@ -1,16 +1,17 @@
 package matches
 
-func List() []Match {
-	return []Match{
-		{
-			HomeTeam: "Brasil",
-			AwayTeam: "Argentina",
-			Date:     "11/06/2026",
-		},
-		{
-			HomeTeam: "França",
-			AwayTeam: "Alemanha",
-			Date:     "12/06/2026",
-		},
+import "context"
+
+type Service struct {
+	repo *Repository
+}
+
+func NewService(repo *Repository) *Service {
+	return &Service{
+		repo: repo,
 	}
+}
+
+func (s *Service) List(ctx context.Context) ([]Match, error) {
+	return s.repo.List(ctx)
 }

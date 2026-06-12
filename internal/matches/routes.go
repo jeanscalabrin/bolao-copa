@@ -2,6 +2,6 @@ package matches
 
 import "github.com/gin-gonic/gin"
 
-func RegisterRoutes(rg *gin.RouterGroup) {
-	rg.GET("/", ListMatches)
+func RegisterRoutes(rg *gin.RouterGroup, handler *Handler) {
+	rg.GET("/", handler.List)
 }

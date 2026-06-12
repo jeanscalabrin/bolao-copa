@@ -1,7 +1,8 @@
 package matches
 
 type Match struct {
-	HomeTeam string
-	AwayTeam string
-	Date     string
+	ID        string
+	HomeTeam  string
+	AwayTeam  string
+	MatchDate string
 }
