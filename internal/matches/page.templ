@@ -1,0 +1,11 @@
+package matches
+
+import "github.com/jeanscalabrin/bolao-copa/internal/shared/layout"
+
+templ Page(matches []Match) {
+	@layout.App("Jogos") {
+		<h1>Jogos</h1>
+
+		@Table(matches)
+	}
+}

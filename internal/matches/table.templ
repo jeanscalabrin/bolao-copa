@@ -1,0 +1,23 @@
+package matches
+
+templ Table(matches []Match) {
+	<table border="1">
+		<thead>
+			<tr>
+				<th>Casa</th>
+				<th>Fora</th>
+				<th>Data</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			for _, match := range matches {
+				<tr>
+					<td>{ match.HomeTeam }</td>
+					<td>{ match.AwayTeam }</td>
+					<td>{ match.Date }</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}
