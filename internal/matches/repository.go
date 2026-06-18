@@ -69,6 +69,8 @@ func (r *Repository) List(ctx context.Context) ([]Match, error) {
 			id,
 			home_team,
 			away_team,
+			home_score,
+			away_score,
 			match_date
 		FROM matches
 		ORDER BY match_date`)
@@ -87,6 +89,8 @@ func (r *Repository) List(ctx context.Context) ([]Match, error) {
 			&m.ID,
 			&m.HomeTeam,
 			&m.AwayTeam,
+			&m.HomeScore,
+			&m.AwayScore,
 			&m.MatchDate,
 		)
 

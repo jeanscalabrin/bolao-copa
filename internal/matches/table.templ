@@ -6,6 +6,8 @@ templ Table(matches []Match) {
 			<tr>
 				<th>Casa</th>
 				<th>Fora</th>
+				<th>Score casa</th>
+				<th>Score fora</th>
 				<th>Data</th>
 			</tr>
 		</thead>
@@ -15,6 +17,16 @@ templ Table(matches []Match) {
 				<tr>
 					<td>{ match.HomeTeam }</td>
 					<td>{ match.AwayTeam }</td>
+					if match.HomeScore != nil {
+				    	<td>{ *match.HomeScore }</td>
+					} else {
+				    	<td>-</td>
+					}
+					if match.HomeScore != nil {
+						<td>{ *match.AwayScore }</td>
+					} else {
+						<td>-</td>
+					}
 					<td>{ match.MatchDate.Format("02/01/2006 15:04") }</td>
 				</tr>
 			}
