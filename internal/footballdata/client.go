@@ -3,7 +3,6 @@ package footballdata
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 	"net/http"
 	"time"
 )
@@ -29,7 +28,6 @@ func (c *Client) GetWorldCupMatches() ([]MatchResponse, error) {
 		return nil, err
 	}
 
-	log.Printf(c.apiKey)
 	req.Header.Set("X-Auth-Token", c.apiKey)
 
 	resp, err := c.http.Do(req)

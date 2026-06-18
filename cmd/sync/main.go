@@ -1,33 +1,45 @@
 package main
 
 import (
-	"fmt"
+	"context"
 	"log"
 
 	"github.com/jeanscalabrin/bolao-copa/internal/config"
+	"github.com/jeanscalabrin/bolao-copa/internal/database"
 	"github.com/jeanscalabrin/bolao-copa/internal/footballdata"
+	"github.com/jeanscalabrin/bolao-copa/internal/matches"
+	syncservice "github.com/jeanscalabrin/bolao-copa/internal/sync"
 )
 
 func main() {
 	cfg := config.Load()
 
-	client := footballdata.NewClient(
-		cfg.FootballDataAPIKey,
+	db, err := database.New(
+		cfg.DatabaseURL,
 	)
-
-	matches, err := client.GetWorldCupMatches()
 
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	fmt.Printf(
-		"matches found: %d\n",
-		len(matches),
+	client := footballdata.NewClient(
+		cfg.FootballDataAPIKey,
 	)
 
-	fmt.Printf(
-		"%+v\n",
-		matches[0],
+	repo := matches.NewRepository(db)
+
+	service := syncservice.NewService(
+		client,
+		repo,
 	)
+
+	err = service.SyncMatches(
+		context.Background(),
+	)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	log.Println("matches synced")
 }

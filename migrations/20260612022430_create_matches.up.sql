@@ -7,8 +7,8 @@ CREATE TABLE matches (
     home_score INTEGER,
     away_score INTEGER,
     match_date TIMESTAMP NOT NULL,
-    group TEXT NOT NULL,
+    group_name TEXT NOT NULL,
     stage TEXT,
-    created_at TIMESTAMP NOT NULL DEFAULT NOW()
+    created_at TIMESTAMP NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMP NOT NULL DEFAULT NOW()
 );
